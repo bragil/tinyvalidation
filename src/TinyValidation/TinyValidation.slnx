@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="TinyValidation.BenchmarkApp/TinyValidation.BenchmarkApp.csproj" Id="9c5dfeae-6b26-4c4d-a05b-d04a99d37111" />
+  <Project Path="TinyValidation.Tests/TinyValidation.Tests.csproj" Id="5c1448b2-c4ac-4e81-be5d-43419fdcc08d" />
+  <Project Path="TinyValidation/TinyValidation.csproj" />
+</Solution>
