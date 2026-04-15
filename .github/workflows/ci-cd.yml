@@ -23,13 +23,13 @@ jobs:
       - name: Run Tests (xUnit)
         # The test command implicitly restores and builds.
         # If tests fail, the pipeline stops here.
-        run: dotnet test src/TinyValidation.Tests/TinyValidation.Tests.csproj --configuration Release
+        run: dotnet test src/TinyValidation/TinyValidation.Tests/TinyValidation.Tests.csproj --configuration Release
 
       - name: Pack library and Increment Version
         # Runs only on main branch (ignoring PRs)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         # We use github.run_number to ensure the patch version is always incremented (e.g., 1.0.1, 1.0.2...)
-        run: dotnet pack src/TinyValidation/TinyValidation.csproj --configuration Release --output ./nupkg /p:PackageVersion=1.0.${{ github.run_number }}
+        run: dotnet pack src/TinyValidation/TinyValidation/TinyValidation.csproj --configuration Release --output ./nupkg /p:PackageVersion=1.0.${{ github.run_number }}
 
       - name: Publish to NuGet.org
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
