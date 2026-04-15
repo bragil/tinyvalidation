@@ -23,7 +23,7 @@ jobs:
       - name: Restore dependencies
         run: |
           dotnet restore src/TinyValidation/TinyValidation/TinyValidation.csproj
-          dotnet restore src/TinyValidation.Tests/TinyValidation.Tests.csproj
+          dotnet restore src/TinyValidation/TinyValidation.Tests/TinyValidation.Tests.csproj
 
       - name: Build project
         run: |
