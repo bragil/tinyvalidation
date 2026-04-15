@@ -1,4 +1,5 @@
 # tinyvalidation
+[![CI/CD Pipeline](https://github.com/bragil/tinyvalidation/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/bragil/tinyvalidation/actions/workflows/ci-cd.yml)
 [![NuGet Version](https://img.shields.io/nuget/v/TinyValidation.svg)](https://www.nuget.org/packages/TinyValidation/)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/TinyValidation.svg)](https://www.nuget.org/packages/TinyValidation/)
 
