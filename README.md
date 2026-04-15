@@ -4,7 +4,7 @@
 
 Extremely lightweight validation library for .NET, with very low CPU and memory consumption.
 
-TinyValidation vs. FluentValidation benchmark results ([here](https://codeberg.org/bragil/tinyvalidation/src/branch/main/src/TinyValidation/TinyValidation.BenchmarkApp)):
+TinyValidation vs. FluentValidation benchmark results ([here](https://github.com/bragil/tinyvalidation/tree/main/src/TinyValidation/TinyValidation.BenchmarkApp)):
 
 ![Benchmark](https://codeberg.org/bragil/tinyvalidation/raw/branch/main/misc/benchmark_tinyvalidation.png)
 
