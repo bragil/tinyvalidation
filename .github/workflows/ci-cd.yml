@@ -21,10 +21,14 @@ jobs:
           dotnet-version: '10.0.x' 
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: |
+          dotnet restore src/TinyValidation/TinyValidation/TinyValidation.csproj
+          dotnet restore src/TinyValidation.Tests/TinyValidation.Tests.csproj
 
       - name: Build project
-        run: dotnet build --configuration Release --no-restore
+        run: |
+          dotnet build src/TinyValidation/TinyValidation/TinyValidation.csproj --configuration Release --no-restore
+          dotnet build src/TinyValidation/TinyValidation.Tests/TinyValidation.Tests.csproj --configuration Release --no-restore
 
       - name: Run Tests (xUnit)
         # We use --no-build to test the exact binaries we just explicitly built
