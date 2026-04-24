@@ -1,10 +1,11 @@
 # tinyvalidation
+[![CI/CD Pipeline](https://github.com/bragil/tinyvalidation/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/bragil/tinyvalidation/actions/workflows/ci-cd.yml)
 [![NuGet Version](https://img.shields.io/nuget/v/TinyValidation.svg)](https://www.nuget.org/packages/TinyValidation/)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/TinyValidation.svg)](https://www.nuget.org/packages/TinyValidation/)
 
 Extremely lightweight validation library for .NET, with very low CPU and memory consumption.
 
-TinyValidation vs. FluentValidation benchmark results ([here](https://codeberg.org/bragil/tinyvalidation/src/branch/main/src/TinyValidation/TinyValidation.BenchmarkApp)):
+TinyValidation vs. FluentValidation benchmark results ([here](https://github.com/bragil/tinyvalidation/tree/main/src/TinyValidation/TinyValidation.BenchmarkApp)):
 
 ![Benchmark](https://codeberg.org/bragil/tinyvalidation/raw/branch/main/misc/benchmark_tinyvalidation.png)
 
