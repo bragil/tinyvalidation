@@ -81,7 +81,10 @@ public static class Tiny
             return false;
 
         if (value is string s)
-            return !string.IsNullOrEmpty(s) && s.Length >= minLength;
+        {
+            var span = s.AsSpan();
+            return !span.IsEmpty && !span.IsWhiteSpace() && s.Length >= minLength;
+        }
 
         if (value is ICollection col)
             return col.Count >= minLength;
@@ -106,7 +109,10 @@ public static class Tiny
             return false;
 
         if (value is string s)
-            return !string.IsNullOrEmpty(s) && s.Length <= maxLength;
+        {
+            var span = s.AsSpan();
+            return !span.IsEmpty && !span.IsWhiteSpace() && s.Length <= maxLength;
+        }
 
         if (value is ICollection col)
             return col.Count <= maxLength;
@@ -131,7 +137,10 @@ public static class Tiny
             return false;
 
         if (value is string s)
-            return !string.IsNullOrEmpty(s) && s.Length == length;
+        {
+            var span = s.AsSpan();
+            return !span.IsEmpty && !span.IsWhiteSpace() && s.Length == length;
+        }
 
         if (value is ICollection col)
             return col.Count == length;
@@ -219,7 +228,8 @@ public static class Tiny
     /// <returns>true if the input string is a valid email address format; otherwise, false.</returns>
     public static bool EmailAddress(string? email)
     {
-        if (string.IsNullOrWhiteSpace(email))
+        var span = email.AsSpan();
+        if (span.IsEmpty || span.IsWhiteSpace())
             return false;
 
         try
@@ -246,9 +256,6 @@ public static class Tiny
         var span = cardNumber.AsSpan();
         if (span.IsEmpty || span.IsWhiteSpace())
             return false;
-
-        //if (string.IsNullOrWhiteSpace(cardNumber))
-        //    return false;
 
         int sum = 0;
         bool alternate = false;
@@ -284,9 +291,6 @@ public static class Tiny
         if (span.IsEmpty || span.IsWhiteSpace())
             return false;
 
-        //if (string.IsNullOrWhiteSpace(value))
-        //    return false;
-
         foreach (char c in span)
         {
             if (!char.IsLetter(c))
@@ -307,9 +311,6 @@ public static class Tiny
         var span = value.AsSpan();
         if (span.IsEmpty || span.IsWhiteSpace())
             return false;
-
-        //if (string.IsNullOrWhiteSpace(value))
-        //    return false;
 
         foreach (char c in span)
         {
@@ -332,9 +333,6 @@ public static class Tiny
         if (span.IsEmpty || span.IsWhiteSpace())
             return false;
 
-        //if (string.IsNullOrWhiteSpace(value))
-        //    return false;
-
         foreach (char c in span)
         {
             if (!char.IsLower(c))
@@ -356,9 +354,6 @@ public static class Tiny
         if (span.IsEmpty || span.IsWhiteSpace())
             return false;
 
-        //if (string.IsNullOrWhiteSpace(value))
-        //    return false;
-
         foreach (char c in span)
         {
             if (!char.IsDigit(c))
@@ -377,9 +372,6 @@ public static class Tiny
         var span = value.AsSpan();
         if (span.IsEmpty || span.IsWhiteSpace())
             return false;
-
-        //if (string.IsNullOrWhiteSpace(value))
-        //    return false;
 
         foreach (char c in span)
         {
@@ -400,9 +392,6 @@ public static class Tiny
         if (span.IsEmpty || span.IsWhiteSpace())
             return false;
 
-        //if (string.IsNullOrWhiteSpace(value))
-        //    return false;
-
         foreach (char c in span)
         {
             if (char.IsUpper(c))
@@ -422,9 +411,6 @@ public static class Tiny
         if (span.IsEmpty || span.IsWhiteSpace())
             return false;
 
-        //if (string.IsNullOrWhiteSpace(value))
-        //    return false;
-
         foreach (char c in span)
         {
             if (char.IsLower(c))
@@ -443,9 +429,6 @@ public static class Tiny
         var span = value.AsSpan();
         if (span.IsEmpty || span.IsWhiteSpace())
             return false;
-
-        //if (string.IsNullOrWhiteSpace(value))
-        //    return false;
 
         foreach (char c in span)
         {
@@ -468,9 +451,6 @@ public static class Tiny
         if (span.IsEmpty || span.IsWhiteSpace())
             return false;
 
-        //if (string.IsNullOrWhiteSpace(value))
-        //    return false;
-
         foreach (char c in span)
         {
             if (char.IsPunctuation(c))
@@ -489,13 +469,14 @@ public static class Tiny
     /// <returns>true if the password meets the specified character requirements; otherwise, false.</returns>
     public static bool ValidPassword(string? value, int minLength, int maxLength, RequiredChars requiredChars)
     {
-        if (string.IsNullOrWhiteSpace(value))
+        var span = value.AsSpan();
+        if (span.IsEmpty || span.IsWhiteSpace())
             return false;
 
         if (minLength > maxLength)
             return false;
 
-        if (value.Length < minLength || value.Length > maxLength)
+        if (span.Length < minLength || span.Length > maxLength)
             return false;
 
         return requiredChars switch

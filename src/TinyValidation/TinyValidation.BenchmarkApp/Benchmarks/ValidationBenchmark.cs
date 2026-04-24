@@ -18,18 +18,44 @@ public class ValidationBenchmark
         CreatedAt = DateTime.Now
     };
 
+    private readonly User invalidUser = new User()
+    {
+        Id = 1,
+        Name = null,
+        Bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+        Email = "@email.com",
+        Password = "aaaaaaaaaaaaaaaa",
+        BirthDate = new DateOnly(2027, 5, 11),
+        Active = true,
+        CreatedAt = DateTime.Now
+    };
+
     [Benchmark]
-    public void FluentValidation()
+    public void FluentValidation_valid()
     {
         var validator = new Validators.FluentUserValidator();
         var result = validator.Validate(validUser);
     }
 
     [Benchmark]
-    public void TinyValidation()
+    public void FluentValidation_invalid()
+    {
+        var validator = new Validators.FluentUserValidator();
+        var result = validator.Validate(validUser);
+    }
+
+    [Benchmark]
+    public void TinyValidation_valid()
     {
         var validator = new Validators.TinyUserValidator();
         var result = validator.Validate(validUser);
+    }
+
+    [Benchmark]
+    public void TinyValidation_invalid()
+    {
+        var validator = new Validators.TinyUserValidator();
+        var result = validator.Validate(invalidUser);
     }
 
 }
