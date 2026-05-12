@@ -4,7 +4,7 @@ namespace TinyValidation.BenchmarkApp.Validators;
 
 public struct TinyUserValidator : ITinyValidator<User>
 {
-    public ValidationResult Validate(User user)
+    public readonly ValidationResult Validate(User user)
     {
         return new Validate()
             .For(("Name", user.Name),

@@ -225,4 +225,17 @@ public class ValidatorsTests
     [InlineData("1234567A", true)]
     public void ValidPassword_WithLettersAndNumbers_ReturnsExpected(string? value, bool expected)
         => Assert.Equal(expected, Tiny.ValidPassword(value, 8, 32, RequiredChars.LettersAndNumbers));
+
+
+    [Theory]
+    [InlineData("abc123", @"^[a-zA-Z0-9]+$", true)]
+    [InlineData("abc123!", @"^[a-zA-Z0-9]+$", false)]
+    [InlineData(null, @"^[a-zA-Z0-9]+$", false)]
+    [InlineData("", @"^[a-zA-Z0-9]+$", false)]
+    [InlineData("   ", @"^[a-zA-Z0-9]+$", false)]
+    public void RegexMatch_ReturnsExpected(string? value, string pattern, bool expected)
+    {
+        Assert.Equal(expected, Tiny.RegexMatch(value, pattern));
+    }
+
 }

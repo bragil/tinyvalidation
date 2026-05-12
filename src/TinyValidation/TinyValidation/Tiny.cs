@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Net.Mail;
 using System.Numerics;
+using System.Text.RegularExpressions;
 
 namespace TinyValidation;
 
@@ -457,6 +458,22 @@ public static class Tiny
                 return true;
         }
         return false;
+    }
+
+    /// <summary>
+    /// Determines whether the specified input string matches the given regular expression pattern.
+    /// </summary>
+    /// <param name="value">The input string to test for a match. If null, empty, or consists only of white-space characters, the method
+    /// returns false.</param>
+    /// <param name="pattern">The regular expression pattern to match against the input string.</param>
+    /// <returns>true if the input string matches the regular expression pattern; otherwise, false.</returns>
+    public static bool RegexMatch(string? value, string pattern)
+    {
+        var span = value.AsSpan();
+        if (span.IsEmpty || span.IsWhiteSpace())
+            return false;
+
+        return Regex.IsMatch(value, pattern, RegexOptions.Compiled);
     }
 
     /// <summary>
